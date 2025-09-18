@@ -14,7 +14,7 @@ export default function Tabs({ tabs, active, onChange }) {
           {t}
         </button>
       ))}
-      <style jsx>{`
+      <style jsx="true">{`
         .tabs {
           display: flex;
           gap: 8px;

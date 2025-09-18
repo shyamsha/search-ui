@@ -13,7 +13,7 @@ export default function Toggle({ checked, onChange, label }) {
         <span className="thumb" />
       </span>
       <span className="label">{label}</span>
-      <style jsx>{`
+      <style jsx="true">{`
         .toggle {
           display: inline-flex;
           align-items: center;

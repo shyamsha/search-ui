@@ -32,7 +32,7 @@ export default function ResultItem({ item, active, onClick, onMouseEnter }) {
         </div>
         <div className="sub">{item.subtitle}</div>
       </div>
-      <style jsx>{`
+      <style jsx="true">{`
         .result {
           display: grid;
           grid-template-columns: 28px 1fr;

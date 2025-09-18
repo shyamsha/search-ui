@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useMemo } from "react";
 import Tabs from "./Tabs";
 import ResultItem from "./ResultItem";
@@ -40,16 +41,16 @@ export default function ResultsPanel({
       <div className="head">
         <Tabs tabs={data.tabs} active={activeTab} onChange={onTabChange} />
         <div className="controls">
-          <Toggle
+          {/* <Toggle
             label="With badge"
             checked={filters.onlyWithBadge}
             onChange={(v) => setFilters((s) => ({ ...s, onlyWithBadge: v }))}
-          />
-          <div className="chips">
+          /> */}
+          {/* <div className="chips">
             {data.suggestions.slice(0, 5).map((sug) => (
               <Chip key={sug} label={sug} active={false} onClick={() => {}} />
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -86,7 +87,7 @@ export default function ResultsPanel({
         )}
       </div>
 
-      <style jsx>{`
+      <style jsx="true">{`
         .panel {
           width: min(720px, 86vw);
           margin-top: 10px;

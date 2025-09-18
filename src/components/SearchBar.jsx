@@ -30,6 +30,10 @@ export default function SearchBar({
         onBlur={onBlur}
         placeholder={placeholder}
         aria-label="Search"
+        name="search"
+        type="text"
+        autoComplete="off"
+        spellCheck="false"
       />
       <div className="right">
         {value && (
@@ -51,7 +55,7 @@ export default function SearchBar({
           <FiSliders />
         </button>
       </div>
-      <style jsx>{`
+      <style jsx="true">{`
         .shell {
           display: grid;
           grid-template-columns: 36px 1fr auto;
@@ -99,6 +103,7 @@ export default function SearchBar({
           background: color-mix(in srgb, var(--brand) 10%, var(--panel-2));
         }
         input {
+          display: block !important;
           background: transparent;
           border: 0;
           color: var(--text);
@@ -106,6 +111,7 @@ export default function SearchBar({
           padding: 8px;
           width: 100%;
           outline: none;
+          -webkit-text-fill-color: var(--text);
         }
         input::placeholder {
           color: var(--muted);

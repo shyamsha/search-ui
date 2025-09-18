@@ -4,7 +4,7 @@ export default function Chip({ label, active, onClick }) {
   return (
     <button className="chip" aria-pressed={active} onClick={onClick}>
       <span>{label}</span>
-      <style jsx>{`
+      <style jsx="true">{`
         .chip {
           background: ${active
             ? "color-mix(in srgb, var(--brand) 18%, var(--chip))"
