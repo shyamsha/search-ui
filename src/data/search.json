@@ -1,0 +1,50 @@
+{
+  "tabs": ["All", "People", "Files", "Projects"],
+  "results": [
+    {
+      "id": "1",
+      "type": "People",
+      "title": "Alice Nguyen",
+      "subtitle": "Design Lead · San Francisco",
+      "badge": "Online",
+      "avatar": "https://i.pravatar.cc/64?img=5"
+    },
+    {
+      "id": "2",
+      "type": "Files",
+      "title": "Quarterly Review.pdf",
+      "subtitle": "Shared · 2 days ago · 1.2MB",
+      "badge": "PDF"
+    },
+    {
+      "id": "3",
+      "type": "Projects",
+      "title": "Neon Dashboard Revamp",
+      "subtitle": "In Progress · Growth Team",
+      "badge": "Priority"
+    },
+    {
+      "id": "4",
+      "type": "People",
+      "title": "Dev Dixit",
+      "subtitle": "Frontend Engineer · Remote",
+      "badge": "Do Not Disturb",
+      "avatar": "https://i.pravatar.cc/64?img=12"
+    },
+    {
+      "id": "5",
+      "type": "Files",
+      "title": "brand-guidelines.sketch",
+      "subtitle": "Updated · 1 hour ago · 24MB",
+      "badge": "Design"
+    }
+  ],
+  "suggestions": [
+    "Payments",
+    "Invoices",
+    "Quarterly",
+    "Design system",
+    "People",
+    "Priority"
+  ]
+}
