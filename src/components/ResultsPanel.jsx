@@ -32,7 +32,7 @@ export default function ResultsPanel({
     return list;
   }, [data, activeTab, filters.onlyWithBadge, query]);
 
-  if (!open) return null;
+  if (!open || !query) return null;
 
   return (
     <div className="panel" role="listbox" aria-label="Search results">

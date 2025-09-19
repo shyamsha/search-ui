@@ -110,7 +110,7 @@ export default function SearchBar({
           font-size: 16px;
           padding: 8px;
           width: 100%;
-          outline: none;
+          outline: none !important;
           -webkit-text-fill-color: var(--text);
         }
         input::placeholder {
