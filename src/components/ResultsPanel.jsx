@@ -2,8 +2,6 @@
 import React, { useMemo } from "react";
 import Tabs from "./Tabs";
 import ResultItem from "./ResultItem";
-import Chip from "./Chip";
-import Toggle from "./Toggle";
 
 export default function ResultsPanel({
   open,
@@ -39,19 +37,12 @@ export default function ResultsPanel({
   return (
     <div className="panel" role="listbox" aria-label="Search results">
       <div className="head">
-        <Tabs tabs={data.tabs} active={activeTab} onChange={onTabChange} />
-        <div className="controls">
-          {/* <Toggle
-            label="With badge"
-            checked={filters.onlyWithBadge}
-            onChange={(v) => setFilters((s) => ({ ...s, onlyWithBadge: v }))}
-          /> */}
-          {/* <div className="chips">
-            {data.suggestions.slice(0, 5).map((sug) => (
-              <Chip key={sug} label={sug} active={false} onClick={() => {}} />
-            ))}
-          </div> */}
-        </div>
+        <Tabs
+          tabs={data.tabs}
+          active={activeTab}
+          onChange={onTabChange}
+          filtered={filtered}
+        />
       </div>
 
       <div className="body">

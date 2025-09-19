@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Tabs({ tabs, active, onChange }) {
+export default function Tabs({ tabs, active, onChange, filtered }) {
   return (
     <div className="tabs" role="tablist" aria-label="Result categories">
       {tabs.map((t) => (
@@ -12,6 +12,13 @@ export default function Tabs({ tabs, active, onChange }) {
           onClick={() => onChange(t)}
         >
           {t}
+          <span className="badge">
+            {t === "All"
+              ? filtered.length || 0
+              : Array.isArray(filtered) && filtered.length > 0
+              ? filtered.filter((item) => item.type === t).length
+              : 0}
+          </span>
         </button>
       ))}
       <style jsx="true">{`
@@ -41,6 +48,15 @@ export default function Tabs({ tabs, active, onChange }) {
           color: var(--text);
           background: color-mix(in srgb, var(--brand) 15%, var(--panel-2));
           box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        }
+        .badge {
+          margin-left: 6px;
+          background: var(--brand);
+          color: #fff;
+          border-radius: 8px;
+          padding: 2px 8px;
+          font-size: 0.85em;
+          font-weight: 600;
         }
       `}</style>
     </div>
