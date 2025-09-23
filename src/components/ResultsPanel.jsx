@@ -11,7 +11,6 @@ export default function ResultsPanel({
   activeTab,
   onTabChange,
   filters,
-  setFilters,
   activeIndex,
   setActiveIndex,
   onEnter,
@@ -20,7 +19,6 @@ export default function ResultsPanel({
     if (!data?.results) return [];
     let list = data.results;
     if (activeTab !== "All") list = list.filter((r) => r.type === activeTab);
-    if (filters.onlyWithBadge) list = list.filter((r) => !!r.badge);
     if (query) {
       const q = query.toLowerCase();
       list = list.filter(
@@ -30,7 +28,7 @@ export default function ResultsPanel({
       );
     }
     return list;
-  }, [data, activeTab, filters.onlyWithBadge, query]);
+  }, [data, activeTab, query]);
 
   if (!open || !query) return null;
 

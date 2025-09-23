@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FiSearch, FiX, FiSliders } from "react-icons/fi";
+import ToggleSwitch from "./ToggleSwitch";
 
 export default function SearchBar({
   value,
@@ -9,10 +10,19 @@ export default function SearchBar({
   onClear,
   focused,
   placeholder = "Search…",
-  onToggleFilters,
 }) {
   const ref = useRef(null);
+  const [open, setOpen] = useState(false);
+  const [filters, setFilters] = useState({
+    Files: true,
+    People: true,
+    Chats: false,
+    Lists: false,
+  });
 
+  const toggleFilter = (key) => {
+    setFilters((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
   useEffect(() => {
     if (focused) ref.current?.focus();
   }, [focused]);
@@ -49,12 +59,35 @@ export default function SearchBar({
         <button
           className="ghost"
           aria-label="Filters"
-          onMouseDown={(e) => e.preventDefault()}
-          onClick={onToggleFilters}
+          onClick={() => setOpen(!open)}
         >
           <FiSliders />
         </button>
       </div>
+      {open && (
+        <div
+          style={{
+            position: "absolute",
+            top: "100%",
+            right: 0,
+            background: "#fff",
+            border: "1px solid #ddd",
+            borderRadius: 8,
+            padding: 12,
+            boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+            zIndex: 100,
+          }}
+        >
+          {Object.keys(filters).map((key) => (
+            <ToggleSwitch
+              key={key}
+              label={key}
+              checked={filters[key]}
+              onChange={() => toggleFilter(key)}
+            />
+          ))}
+        </div>
+      )}
       <style jsx="true">{`
         .shell {
           display: grid;

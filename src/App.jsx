@@ -10,7 +10,6 @@ export default function App() {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("All");
-  const [filters, setFilters] = useState({ onlyWithBadge: false });
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -30,13 +29,12 @@ export default function App() {
     setLoading(true);
     const t = setTimeout(() => setLoading(false), query ? 450 : 250);
     return () => clearTimeout(t);
-  }, [query, activeTab, filters, data]);
+  }, [query, activeTab, data]);
 
   const visibleIds = useMemo(() => {
     if (!data?.results) return [];
     let list = data.results;
     if (activeTab !== "All") list = list.filter((r) => r.type === activeTab);
-    if (filters.onlyWithBadge) list = list.filter((r) => !!r.badge);
     if (query) {
       const q = query.toLowerCase();
       list = list.filter(
@@ -46,7 +44,7 @@ export default function App() {
       );
     }
     return list.map((r) => r.id);
-  }, [data, activeTab, filters, query]);
+  }, [data, activeTab, query]);
 
   const { activeIndex, setActiveIndex } = useKeyboardListNav(visibleIds, {
     onEnter: (id) => alert(`Open ${id}`),
@@ -62,9 +60,6 @@ export default function App() {
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           onClear={() => setQuery("")}
-          onToggleFilters={() =>
-            setFilters((s) => ({ ...s, onlyWithBadge: !s.onlyWithBadge }))
-          }
         />
         <ResultsPanel
           open={open}
@@ -73,8 +68,6 @@ export default function App() {
           data={data || { tabs: [], results: [], suggestions: [] }}
           activeTab={activeTab}
           onTabChange={setActiveTab}
-          filters={filters}
-          setFilters={setFilters}
           activeIndex={activeIndex}
           setActiveIndex={setActiveIndex}
           onEnter={(id) => alert(`Open ${id}`)}
