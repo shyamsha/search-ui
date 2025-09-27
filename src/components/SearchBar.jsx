@@ -28,54 +28,66 @@ export default function SearchBar({
   }, [focused]);
 
   return (
-    <div className={`shell ${focused ? "focused" : ""}`}>
-      <div className="left">
-        <FiSearch className="m" aria-hidden="true" />
-      </div>
-      <input
-        ref={ref}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        placeholder={placeholder}
-        aria-label="Search"
-        name="search"
-        type="text"
-        autoComplete="off"
-        spellCheck="false"
-      />
-      <div className="right">
-        {value && (
+    <div style={{ position: "relative", width: "min(720px, 86vw)" }}>
+      <div className={`shell ${focused ? "focused" : ""}`}>
+        <div className="left">
+          <FiSearch className="m" aria-hidden="true" />
+        </div>
+        <input
+          ref={ref}
+          value={value}
+          onChange={(e) => {
+            onChange(e.target.value);
+          }}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          placeholder={placeholder}
+          aria-label="Search"
+          name="search"
+          type="text"
+          autoComplete="off"
+          spellCheck="false"
+        />
+        <div className="right">
+          {value && (
+            <button
+              className="ghost"
+              aria-label="Clear"
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={onClear}
+            >
+              <FiX />
+            </button>
+          )}
           <button
             className="ghost"
-            aria-label="Clear"
-            onMouseDown={(e) => e.preventDefault()}
-            onClick={onClear}
+            aria-label="Filters"
+            onClick={() => {
+              if (value) setOpen(!open);
+            }}
+            disabled={!value}
+            style={{
+              opacity: value ? 1 : 0.5,
+              pointerEvents: value ? "auto" : "none",
+            }}
           >
-            <FiX />
+            <FiSliders />
           </button>
-        )}
-        <button
-          className="ghost"
-          aria-label="Filters"
-          onClick={() => setOpen(!open)}
-        >
-          <FiSliders />
-        </button>
+        </div>
       </div>
-      {open && (
+      {open && value && (
         <div
           style={{
             position: "absolute",
             top: "100%",
             right: 0,
-            background: "#fff",
-            border: "1px solid #ddd",
+            border: "1px solid var(--border)",
             borderRadius: 8,
             padding: 12,
             boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
             zIndex: 100,
+            background: "var(--panel)",
+            marginTop: 4,
           }}
         >
           {Object.keys(filters).map((key) => (
